@@ -17,26 +17,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1gu-tn-qPZ">
-                                <rect key="frame" x="279" y="290" width="42" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_small" translatesAutoresizingMaskIntoConstraints="NO" id="OrZ-aQ-eKV">
+                                <rect key="frame" x="155" y="90" width="290" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="bIX-Kc-LY7"/>
+                                    <constraint firstAttribute="width" constant="290" id="gcO-xw-Wju"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pes-jz-fY5">
+                                <rect key="frame" x="277" y="285" width="99" height="30"/>
+                                <state key="normal" title="Inscrivez-vous">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="1gu-tn-qPZ" secondAttribute="centerY" id="4F8-OQ-rhC"/>
-                            <constraint firstAttribute="centerX" secondItem="1gu-tn-qPZ" secondAttribute="centerX" id="Vxp-Xw-Ql7"/>
+                            <constraint firstAttribute="centerX" secondItem="OrZ-aQ-eKV" secondAttribute="centerX" id="2rB-Ba-u4J"/>
+                            <constraint firstItem="OrZ-aQ-eKV" firstAttribute="top" secondItem="Yv9-Is-hkV" secondAttribute="top" constant="90" id="7MG-74-WSH"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="testLabel" destination="1gu-tn-qPZ" id="XWy-aj-vRm"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ROw-MX-tUZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="183" y="407"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo_small" width="290" height="55"/>
+    </resources>
 </document>
