@@ -11,4 +11,5 @@ import UIKit
 enum SegueIdentifiers: String
 {
     case SIGN_UP = "signUp"
+    case MENU = "menu"
 }

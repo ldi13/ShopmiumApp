@@ -12,9 +12,19 @@ import UIKit
 
 class SignUpViewController: UIViewController
 {
-
-    override func viewDidLoad() {
+    // MARK: - UIViewController lifecycle methods
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
+        UserRequest.signUpUser("dididi@test.com", successCompletionHandler: {
+            (result) in
+                println(result)
+            }, errorCompletionHandler: {
+                (error) in
+                    println(error)
+            }
+        )
     }
 
     override func didReceiveMemoryWarning() {
