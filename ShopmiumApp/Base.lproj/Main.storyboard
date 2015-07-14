@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--Sign Up View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="tEF-op-FcA">
             <objects>
-                <viewController storyboardIdentifier="signUpViewController" id="P8L-7X-Y6j" customClass="SignUpViewController" customModule="ShopmiumApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeViewController" id="P8L-7X-Y6j" customClass="HomeViewController" customModule="ShopmiumApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pFj-C9-zX7"/>
                         <viewControllerLayoutGuide type="bottom" id="M4H-QI-6yQ"/>
@@ -17,33 +17,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_small" translatesAutoresizingMaskIntoConstraints="NO" id="OrZ-aQ-eKV">
-                                <rect key="frame" x="155" y="90" width="290" height="50"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="l8r-Xg-1w8">
+                                <rect key="frame" x="190" y="100" width="220" height="220"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="bIX-Kc-LY7"/>
-                                    <constraint firstAttribute="width" constant="290" id="gcO-xw-Wju"/>
+                                    <constraint firstAttribute="width" constant="220" id="P0d-zW-P9A"/>
+                                    <constraint firstAttribute="height" constant="220" id="Ybt-h5-AI1"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pes-jz-fY5">
-                                <rect key="frame" x="277" y="285" width="99" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pes-jz-fY5">
+                                <rect key="frame" x="190.5" y="365" width="220" height="50"/>
+                                <color key="backgroundColor" red="0.92941176470588238" green="0.16078431372549018" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="HOm-oJ-sSo"/>
+                                    <constraint firstAttribute="width" constant="220" id="Lgi-Yr-LIa"/>
+                                </constraints>
                                 <state key="normal" title="Inscrivez-vous">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="signUp:" destination="P8L-7X-Y6j" eventType="touchUpInside" id="nfH-s5-Ayy"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="OrZ-aQ-eKV" secondAttribute="centerX" id="2rB-Ba-u4J"/>
-                            <constraint firstItem="OrZ-aQ-eKV" firstAttribute="top" secondItem="Yv9-Is-hkV" secondAttribute="top" constant="90" id="7MG-74-WSH"/>
+                            <constraint firstAttribute="centerY" secondItem="Pes-jz-fY5" secondAttribute="centerY" constant="-90" id="78n-t1-7Sn"/>
+                            <constraint firstAttribute="centerX" secondItem="l8r-Xg-1w8" secondAttribute="centerX" id="TVw-ia-eqE"/>
+                            <constraint firstAttribute="centerY" secondItem="l8r-Xg-1w8" secondAttribute="centerY" constant="90" id="enV-ud-NO0"/>
+                            <constraint firstAttribute="centerX" secondItem="Pes-jz-fY5" secondAttribute="centerX" id="tVU-qk-960"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="signUpButton" destination="Pes-jz-fY5" id="52S-BA-aQF"/>
+                        <segue destination="Qh5-Xh-jqv" kind="presentation" identifier="signUp" modalTransitionStyle="crossDissolve" id="7j1-nc-irR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ROw-MX-tUZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="183" y="407"/>
         </scene>
+        <!--Sign Up View Controller-->
+        <scene sceneID="YUn-0P-6I6">
+            <objects>
+                <viewController id="Qh5-Xh-jqv" customClass="SignUpViewController" customModule="ShopmiumApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jg7-gl-ccq"/>
+                        <viewControllerLayoutGuide type="bottom" id="9te-MH-gAX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="z1l-6z-rO4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LAW-qy-n9U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="857" y="407"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="logo_small" width="290" height="55"/>
+        <image name="logo" width="340" height="340"/>
     </resources>
 </document>
