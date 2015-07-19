@@ -114,11 +114,66 @@
                         <outlet property="emailTextField" destination="ge5-vX-a6J" id="7qG-8M-Ker"/>
                         <outlet property="registrationButton" destination="1eq-Pw-YPc" id="EJK-Lo-a3V"/>
                         <outlet property="spinnerView" destination="qa4-HL-HrW" id="Vv6-cl-IWa"/>
+                        <segue destination="VS7-je-sf3" kind="presentation" identifier="rootMenu" modalTransitionStyle="crossDissolve" id="Gdj-7D-7iH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LAW-qy-n9U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="857" y="407"/>
+        </scene>
+        <!--Root Menu Container View Controller-->
+        <scene sceneID="YjV-S3-2Wg">
+            <objects>
+                <viewController storyboardIdentifier="rootMenuContainerViewController" id="VS7-je-sf3" customClass="RootMenuContainerViewController" customModule="ShopmiumApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JdK-QQ-8nH"/>
+                        <viewControllerLayoutGuide type="bottom" id="6bw-HS-QnX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ftK-JO-ko4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fmm-dV-wqg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="183" y="1232"/>
+        </scene>
+        <!--Left Menu View Controller-->
+        <scene sceneID="EEo-cE-gtz">
+            <objects>
+                <viewController storyboardIdentifier="leftMenuViewController" id="9gh-Bi-pHG" customClass="LeftMenuViewController" customModule="ShopmiumApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EPo-AQ-Ddl"/>
+                        <viewControllerLayoutGuide type="bottom" id="xLX-zi-KO7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="f25-Jm-bML">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.1441167387" green="0.33675349389999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A35-ti-HBB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="867" y="1228"/>
+        </scene>
+        <!--On Board View Controller-->
+        <scene sceneID="Akr-zP-7BX">
+            <objects>
+                <viewController storyboardIdentifier="onBoardViewController" id="S2J-UA-mfc" customClass="OnBoardViewController" customModule="ShopmiumApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cda-Dt-QiX"/>
+                        <viewControllerLayoutGuide type="bottom" id="uZw-7H-yjF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cwH-gd-31l">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.091950119339999997" blue="0.081664688479999997" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9o4-jB-rK9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1527" y="1228"/>
         </scene>
     </scenes>
     <resources>

@@ -62,7 +62,7 @@ class SignUpViewController: UIViewController
             
             UserRequest.signUpUser(self.emailTextField.text, successCompletionHandler: {
                 (result) in
-                    println(result)
+                    self.performSegueWithIdentifier("rootMenu", sender: nil)
                 }, errorCompletionHandler: {
                     (error, JSON) in
                         self.handleUIIntercation(enableInteraction: true)
