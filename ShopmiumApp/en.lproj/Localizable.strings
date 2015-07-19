@@ -9,3 +9,9 @@
 */
 
 "Home.sign.up.button.title" = "Sign up!";
+
+"Sign.up.email.textfield.placeholder" = "Your email";
+"Sign.up.registration.button.title" = "Send your registration";
+
+"Error.alertview.title" = "Error";
+"Sign.up.email.validation.error" = "Your email is invalid";

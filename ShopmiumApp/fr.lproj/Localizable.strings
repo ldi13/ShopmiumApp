@@ -9,3 +9,9 @@
 */
 
 "Home.sign.up.button.title" = "Inscrivez-vous !";
+
+"Sign.up.email.textfield.placeholder" = "Votre email";
+"Sign.up.registration.button.title" = "Envoyez votre inscription";
+
+"Error.alertview.title" = "Erreur";
+"Sign.up.email.validation.error" = "Votre email est incorrect";

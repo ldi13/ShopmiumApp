@@ -98,23 +98,18 @@ class ApiRequest: NSObject
             .validate()
             .responseJSON {
                 (request, response, JSON, error) -> Void in
-                println(request)
-                //                    println(response)
-                //                    println(JSON as! [String: AnyObject])
-                //                    println(error)
-                
-                if let error = error {
-                    NSOperationQueue.mainQueue().addOperationWithBlock({
-                        apiRequest.errorHandler(error: error)
-                    })
-                }
-                    
-                else if let JSON: AnyObject = JSON
-                {
-                    NSOperationQueue.mainQueue().addOperationWithBlock({
-                        apiRequest.successHandler(result: JSON)
-                    })
-                }
+                    if let error = error {
+                        NSOperationQueue.mainQueue().addOperationWithBlock({
+                            apiRequest.errorHandler(error: error, JSON: JSON!)
+                        })
+                    }
+                        
+                    else if let JSON: AnyObject = JSON
+                    {
+                        NSOperationQueue.mainQueue().addOperationWithBlock({
+                            apiRequest.successHandler(result: JSON)
+                        })
+                    }
         }
     }
 

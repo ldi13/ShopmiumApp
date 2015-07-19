@@ -16,3 +16,12 @@ import UIKit
 func loc(key: String) -> String {
     return NSLocalizedString(key, comment: "No key found")
 }
+
+
+// MARK: - Method to trigger on screen an alert view
+
+func showAlertView(title: String!, message: String!)
+{
+    let alertView = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "OK")
+    alertView.show()
+}

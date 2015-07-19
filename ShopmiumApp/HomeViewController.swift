@@ -22,9 +22,7 @@ class HomeViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        // UI customization
-        self.customizeSignUpButton()
+        self.customizeUI()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,7 +32,7 @@ class HomeViewController: UIViewController
     
     // MARK: - Custom methods
     
-    func customizeSignUpButton()
+    private func customizeUI()
     {
         self.signUpButton.setTitle(loc("Home.sign.up.button.title"), forState: UIControlState.Normal)
         self.signUpButton.drawRoundedCorners(CGFloat(5))
@@ -43,7 +41,7 @@ class HomeViewController: UIViewController
     
     // MARK: - IBAction methods
     
-    @IBAction func signUp(sender: UIButton) {
+    @IBAction func goToSignUpForm(sender: UIButton) {
         self.performSegueWithIdentifier(SegueIdentifiers.SIGN_UP.rawValue, sender: nil)
     }
 }
