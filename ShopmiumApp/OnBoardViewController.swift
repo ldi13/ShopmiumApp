@@ -12,14 +12,28 @@ import UIKit
 
 class OnBoardViewController: UIViewController
 {
-    override func viewDidLoad() {
+    // MARK: - Properties
+    
+    var response: String!
+    
+    
+    // MARK: - IBOutlets
+    
+    @IBOutlet weak var responseLabel: UILabel!
+    
+    
+    // MARK: - UIViewController lifecycle methods
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
+        self.responseLabel.text = self.response
     }
 
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
-        self.setUpNavigationBar("Welcome to Shopmium !")
+        self.setUpNavigationBar(loc("On.board.navbar.title"))
     }
     
     override func didReceiveMemoryWarning() {

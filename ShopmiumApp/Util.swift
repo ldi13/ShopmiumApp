@@ -25,3 +25,10 @@ func showAlertView(title: String!, message: String!)
     let alertView = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "OK")
     alertView.show()
 }
+
+
+// MARK: - Method serializing a dictionary into string
+
+func serializeToJSON(dictionary: AnyObject) -> String {
+    return SDJSONPrettyPrint.stringFromJSONObject(dictionary as! NSObject)
+}

@@ -12,4 +12,6 @@ enum ViewControllerIdentifiers: String
 {
     case HOME = "homeViewController"
     case SIGN_UP = "signUpViewController"
+    case ROOT_MENU_CONTAINER = "rootMenuContainerViewController"
+    case ON_BOARD = "onBoardViewController"
 }

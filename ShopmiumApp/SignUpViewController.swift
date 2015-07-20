@@ -62,7 +62,7 @@ class SignUpViewController: UIViewController
             
             UserRequest.signUpUser(self.emailTextField.text, successCompletionHandler: {
                 (result) in
-                    self.performSegueWithIdentifier("rootMenu", sender: nil)
+                self.displayRootMenuContainerViewController(result)
                 }, errorCompletionHandler: {
                     (error, JSON) in
                         self.handleUIIntercation(enableInteraction: true)
@@ -78,5 +78,14 @@ class SignUpViewController: UIViewController
         else {
             showAlertView(loc("Error.alertview.title"), loc("Sign.up.email.validation.error"))
         }
+    }
+    
+    private func displayRootMenuContainerViewController(result: AnyObject)
+    {
+        let rootMenuContainerViewController = self.storyboard?.instantiateViewControllerWithIdentifier(ViewControllerIdentifiers.ROOT_MENU_CONTAINER.rawValue) as! RootMenuContainerViewController
+        rootMenuContainerViewController.response = serializeToJSON(result)
+        
+        self.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+        self.presentViewController(rootMenuContainerViewController, animated: true, completion: nil)
     }
 }

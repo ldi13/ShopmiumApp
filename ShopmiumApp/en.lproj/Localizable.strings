@@ -16,6 +16,8 @@
 "Error.alertview.title" = "Error";
 "Sign.up.email.validation.error" = "Your email is invalid";
 
+"On.board.navbar.title" = "Welcome to Shopmium !";
+
 "Left.menu.offers.title" = "Offers";
 "Left.menu.shops.title" = "Shops";
 "Left.menu.reviews.title" = "Reviews";

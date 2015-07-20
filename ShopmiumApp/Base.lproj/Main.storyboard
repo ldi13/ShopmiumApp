@@ -114,7 +114,6 @@
                         <outlet property="emailTextField" destination="ge5-vX-a6J" id="7qG-8M-Ker"/>
                         <outlet property="registrationButton" destination="1eq-Pw-YPc" id="EJK-Lo-a3V"/>
                         <outlet property="spinnerView" destination="qa4-HL-HrW" id="Vv6-cl-IWa"/>
-                        <segue destination="VS7-je-sf3" kind="presentation" identifier="rootMenu" modalTransitionStyle="crossDissolve" id="Gdj-7D-7iH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LAW-qy-n9U" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -187,8 +186,25 @@
                     <view key="view" contentMode="scaleToFill" id="cwH-gd-31l">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="0.091950119339999997" blue="0.081664688479999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="500" translatesAutoresizingMaskIntoConstraints="NO" id="Zfj-hc-ZW7">
+                                <rect key="frame" x="10" y="25" width="580" height="570"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uZw-7H-yjF" firstAttribute="top" secondItem="Zfj-hc-ZW7" secondAttribute="bottom" constant="5" id="CXO-bs-Cpm"/>
+                            <constraint firstItem="Zfj-hc-ZW7" firstAttribute="leading" secondItem="cwH-gd-31l" secondAttribute="leading" constant="10" id="Io0-W3-SWh"/>
+                            <constraint firstItem="Zfj-hc-ZW7" firstAttribute="top" secondItem="cda-Dt-QiX" secondAttribute="bottom" constant="5" id="JJv-un-MuJ"/>
+                            <constraint firstAttribute="trailing" secondItem="Zfj-hc-ZW7" secondAttribute="trailing" constant="10" id="ovc-u8-P6t"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="responseLabel" destination="Zfj-hc-ZW7" id="Vbd-YW-Syz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9o4-jB-rK9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

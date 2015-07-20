@@ -16,6 +16,7 @@ class RootMenuContainerViewController: UIViewController
     
     let MENU_WIDTH = CGFloat(270)
     
+    
     // MARK: - Enum
     
     enum SlideOutState
@@ -32,6 +33,7 @@ class RootMenuContainerViewController: UIViewController
     var contentViewController: UIViewController!
     var currentState: SlideOutState = .BothCollapsed
     var leftMenuViewController: LeftMenuViewController!
+    var response: String!
     
     
     // MARK: - UIViewController lifecycle methods
@@ -41,7 +43,8 @@ class RootMenuContainerViewController: UIViewController
         super.viewDidLoad()
         
         // Deal with content view controller and navigation
-        self.contentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("onBoardViewController") as! UIViewController
+        self.contentViewController = self.storyboard?.instantiateViewControllerWithIdentifier(ViewControllerIdentifiers.ON_BOARD.rawValue) as! UIViewController
+        (self.contentViewController as! OnBoardViewController).response = self.response
         self.contentNavigationController = UINavigationController(rootViewController: self.contentViewController)
         
         // Define content navigation view controller as child view into container
@@ -59,55 +62,9 @@ class RootMenuContainerViewController: UIViewController
         super.didReceiveMemoryWarning()
     }
     
-    func addChildLeftMenuViewController()
-    {
-        self.leftMenuViewController.view.frame = CGRectMake(-MENU_WIDTH, 0, MENU_WIDTH, self.leftMenuViewController.view.frame.height)
-        
-        self.view.insertSubview(self.leftMenuViewController.view, aboveSubview: self.view)
-        self.addChildViewController(self.leftMenuViewController)
-        self.leftMenuViewController.didMoveToParentViewController(self)
-    }
     
-    func animateLeftMenuXPosition(#targetPosition: CGFloat, completion: ((Bool) -> Void)! = nil) {
-        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
-            self.leftMenuViewController?.view.frame.origin.x = targetPosition
-            }, completion: completion)
-    }
+    // MARK: - Custom methods
     
-    func handlePanGesture(recognizer: UIPanGestureRecognizer)
-    {
-        let gestureIsDraggingFromLeftToRight = (recognizer.velocityInView(self.view).x > 0)
-        
-        switch(recognizer.state)
-        {
-        case UIGestureRecognizerState.Began:
-            if (self.currentState == .BothCollapsed)
-            {
-                if (gestureIsDraggingFromLeftToRight) {
-                    self.addLeftMenuViewController()
-                }
-            }
-            
-        case UIGestureRecognizerState.Changed:
-            if let leftViewController = self.leftMenuViewController
-            {
-                leftViewController.view.center.x = min(leftViewController.view.center.x + recognizer.translationInView(view).x, leftViewController.view.frame.width / 2)
-                recognizer.setTranslation(CGPointZero, inView: self.leftMenuViewController!.view)
-            }
-            
-        case UIGestureRecognizerState.Ended:
-            if let leftViewController = self.leftMenuViewController {
-                self.animateLeftMenu(shouldExpand: gestureIsDraggingFromLeftToRight)
-            }
-            
-        default:
-            break
-        }
-    }
-}
-
-extension RootMenuContainerViewController
-{
     func toggleLeftMenu()
     {
         let notAlreadyExpanded = (currentState != .LeftPanelExpanded)
@@ -119,7 +76,53 @@ extension RootMenuContainerViewController
         self.animateLeftMenu(shouldExpand: notAlreadyExpanded)
     }
     
-    func addLeftMenuViewController()
+    func handlePanGesture(recognizer: UIPanGestureRecognizer)
+    {
+        let gestureIsDraggingFromLeftToRight = (recognizer.velocityInView(self.view).x > 0)
+        
+        switch(recognizer.state)
+        {
+            case UIGestureRecognizerState.Began:
+                if (self.currentState == .BothCollapsed)
+                {
+                    if (gestureIsDraggingFromLeftToRight) {
+                        self.addLeftMenuViewController()
+                    }
+                }
+                
+            case UIGestureRecognizerState.Changed:
+                if let leftViewController = self.leftMenuViewController
+                {
+                    leftViewController.view.center.x = min(leftViewController.view.center.x + recognizer.translationInView(view).x, leftViewController.view.frame.width / 2)
+                    recognizer.setTranslation(CGPointZero, inView: self.leftMenuViewController!.view)
+                }
+                
+            case UIGestureRecognizerState.Ended:
+                if let leftViewController = self.leftMenuViewController {
+                    self.animateLeftMenu(shouldExpand: gestureIsDraggingFromLeftToRight)
+                }
+                
+            default:
+                break
+        }
+    }
+    
+    private func addChildLeftMenuViewController()
+    {
+        self.leftMenuViewController.view.frame = CGRectMake(-MENU_WIDTH, 0, MENU_WIDTH, self.leftMenuViewController.view.frame.height)
+        
+        self.view.insertSubview(self.leftMenuViewController.view, aboveSubview: self.view)
+        self.addChildViewController(self.leftMenuViewController)
+        self.leftMenuViewController.didMoveToParentViewController(self)
+    }
+    
+    private func animateLeftMenuXPosition(#targetPosition: CGFloat, completion: ((Bool) -> Void)! = nil) {
+        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
+            self.leftMenuViewController?.view.frame.origin.x = targetPosition
+            }, completion: completion)
+    }
+    
+    private func addLeftMenuViewController()
     {
         if (self.leftMenuViewController == nil)
         {
@@ -128,7 +131,7 @@ extension RootMenuContainerViewController
         }
     }
     
-    func animateLeftMenu(#shouldExpand: Bool)
+    private func animateLeftMenu(#shouldExpand: Bool)
     {
         if (shouldExpand) {
             self.currentState = .LeftPanelExpanded
@@ -136,12 +139,13 @@ extension RootMenuContainerViewController
             self.animateLeftMenuXPosition(targetPosition: 0)
         }
             
-        else {
+        else
+        {
             self.animateLeftMenuXPosition(targetPosition: -MENU_WIDTH) {
                 finished in
-                    self.currentState = .BothCollapsed
-                    self.leftMenuViewController?.view.removeFromSuperview()
-                    self.leftMenuViewController = nil;
+                self.currentState = .BothCollapsed
+                self.leftMenuViewController?.view.removeFromSuperview()
+                self.leftMenuViewController = nil;
             }
         }
         
