@@ -12,6 +12,10 @@ import UIKit
 
 class RootMenuContainerViewController: UIViewController
 {
+    // MARK: - Constants
+    
+    let MENU_WIDTH = CGFloat(270)
+    
     // MARK: - Enum
     
     enum SlideOutState
@@ -57,7 +61,7 @@ class RootMenuContainerViewController: UIViewController
     
     func addChildLeftMenuViewController()
     {
-        self.leftMenuViewController.view.frame = CGRectMake(-200, 0, 200, self.leftMenuViewController.view.frame.height)
+        self.leftMenuViewController.view.frame = CGRectMake(-MENU_WIDTH, 0, MENU_WIDTH, self.leftMenuViewController.view.frame.height)
         
         self.view.insertSubview(self.leftMenuViewController.view, aboveSubview: self.view)
         self.addChildViewController(self.leftMenuViewController)
@@ -133,7 +137,7 @@ extension RootMenuContainerViewController
         }
             
         else {
-            self.animateLeftMenuXPosition(targetPosition: -200) {
+            self.animateLeftMenuXPosition(targetPosition: -MENU_WIDTH) {
                 finished in
                     self.currentState = .BothCollapsed
                     self.leftMenuViewController?.view.removeFromSuperview()

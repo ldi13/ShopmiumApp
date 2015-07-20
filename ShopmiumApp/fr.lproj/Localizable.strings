@@ -15,3 +15,12 @@
 
 "Error.alertview.title" = "Erreur";
 "Sign.up.email.validation.error" = "Votre email est incorrect";
+
+"Left.menu.offers.title" = "Offres";
+"Left.menu.shops.title" = "Magasins";
+"Left.menu.reviews.title" = "Avis";
+"Left.menu.sponsorship.title" = "Parrainer un ami = 6€";
+"Left.menu.purchase.title" = "Mes achats";
+"Left.menu.preferences.title" = "Préférences";
+"Left.menu.help.title" = "Aide";
+
