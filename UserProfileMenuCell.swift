@@ -10,7 +10,16 @@
 
 import UIKit
 
-class UserProfileMenuCell: UITableViewCell {
-
-
+class UserProfileMenuCell: UITableViewCell
+{
+    // MARK: - IBOutlets
+    
+    @IBOutlet weak var emailLabel: UILabel!
+    
+    
+    // MARK: - Custom methods
+    
+    func refreshCell() {
+        self.emailLabel.text = User.sharedInstance.email
+    }
 }

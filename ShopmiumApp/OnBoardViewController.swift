@@ -12,11 +12,6 @@ import UIKit
 
 class OnBoardViewController: UIViewController
 {
-    // MARK: - Properties
-    
-    var response: String!
-    
-    
     // MARK: - IBOutlets
     
     @IBOutlet weak var responseLabel: UILabel!
@@ -27,7 +22,7 @@ class OnBoardViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        self.responseLabel.text = self.response
+        self.responseLabel.text = User.sharedInstance.response
     }
 
     override func viewWillAppear(animated: Bool)

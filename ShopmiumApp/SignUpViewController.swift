@@ -62,7 +62,7 @@ class SignUpViewController: UIViewController
             
             UserRequest.signUpUser(self.emailTextField.text, successCompletionHandler: {
                 (result) in
-                self.displayRootMenuContainerViewController(result)
+                    self.displayRootMenuContainerViewController(result)
                 }, errorCompletionHandler: {
                     (error, JSON) in
                         self.handleUIIntercation(enableInteraction: true)
@@ -83,7 +83,9 @@ class SignUpViewController: UIViewController
     private func displayRootMenuContainerViewController(result: AnyObject)
     {
         let rootMenuContainerViewController = self.storyboard?.instantiateViewControllerWithIdentifier(ViewControllerIdentifiers.ROOT_MENU_CONTAINER.rawValue) as! RootMenuContainerViewController
-        rootMenuContainerViewController.response = serializeToJSON(result)
+        
+        User.sharedInstance.refreshUserWithJSON(result as! [String: AnyObject])
+        User.sharedInstance.response = serializeToJSON(result)
         
         self.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         self.presentViewController(rootMenuContainerViewController, animated: true, completion: nil)

@@ -33,7 +33,6 @@ class RootMenuContainerViewController: UIViewController
     var contentViewController: UIViewController!
     var currentState: SlideOutState = .BothCollapsed
     var leftMenuViewController: LeftMenuViewController!
-    var response: String!
     
     
     // MARK: - UIViewController lifecycle methods
@@ -44,7 +43,6 @@ class RootMenuContainerViewController: UIViewController
         
         // Deal with content view controller and navigation
         self.contentViewController = self.storyboard?.instantiateViewControllerWithIdentifier(ViewControllerIdentifiers.ON_BOARD.rawValue) as! UIViewController
-        (self.contentViewController as! OnBoardViewController).response = self.response
         self.contentNavigationController = UINavigationController(rootViewController: self.contentViewController)
         
         // Define content navigation view controller as child view into container

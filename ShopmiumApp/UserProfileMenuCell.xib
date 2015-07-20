@@ -44,6 +44,9 @@
                     <constraint firstAttribute="bottom" secondItem="eXM-fj-T34" secondAttribute="bottom" constant="15" id="wA6-Uc-s0T"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="emailLabel" destination="eXM-fj-T34" id="T2G-ET-PYl"/>
+            </connections>
             <point key="canvasLocation" x="226" y="251"/>
         </tableViewCell>
     </objects>

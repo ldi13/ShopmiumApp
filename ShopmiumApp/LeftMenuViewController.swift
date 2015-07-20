@@ -74,6 +74,7 @@ extension LeftMenuViewController: UITableViewDataSource
         {
             case LeftMenuRows.UserProfile.hashValue:
                 let userProfileMenuCell = tableView.dequeueReusableCellWithIdentifier(CellIdentifiers.UserProfileMenuCell.rawValue) as! UserProfileMenuCell
+                userProfileMenuCell.refreshCell()
                 cell = userProfileMenuCell
             
             case LeftMenuRows.Offers.hashValue:
