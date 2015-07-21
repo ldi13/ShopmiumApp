@@ -13,3 +13,7 @@ L'application est versionnée en Français / Anglais, à condition de changer la
 Pour accéder aux settings, lancer le simulateur puis faire CMD + SHIFT + H, pour basculer sur la home du device, et cliquer sur Settings, Général, International
 
 NB : Attention, ceci ne marche que pour les simulateurs de type iOS 7. Sous iOS 8, même après modification de la langue, le versionning reste en anglais (langue par défaut)
+
+# Steps effectuées
+Steps 1, 2, 3, 4.
+Pas de step 5 avec la déconnexion.
