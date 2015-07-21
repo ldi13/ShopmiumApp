@@ -15,7 +15,8 @@ class RootMenuContainerViewController: UIViewController
     // MARK: - Constants
     
     let MENU_WIDTH = CGFloat(270)
-    
+    let MAX_ALPHA_OVERLAY = CGFloat(0.8)
+    let MIN_ALPHA_OVERLAY = CGFloat(0)
     
     // MARK: - Enum
     
@@ -23,7 +24,6 @@ class RootMenuContainerViewController: UIViewController
     {
         case BothCollapsed
         case LeftPanelExpanded
-        case RightPanelExpanded
     }
     
     
@@ -33,7 +33,8 @@ class RootMenuContainerViewController: UIViewController
     var contentViewController: UIViewController!
     var currentState: SlideOutState = .BothCollapsed
     var leftMenuViewController: LeftMenuViewController!
-    
+    var panGestureRecognizer: UIPanGestureRecognizer!
+    var overlayView: UIView!
     
     // MARK: - UIViewController lifecycle methods
     
@@ -51,9 +52,8 @@ class RootMenuContainerViewController: UIViewController
         self.contentNavigationController.didMoveToParentViewController(self)
         
         // Pan gesture recognizer
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
-        self.contentNavigationController.view.addGestureRecognizer(panGestureRecognizer)
-        
+        self.panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
+        self.contentNavigationController.view.addGestureRecognizer(self.panGestureRecognizer)
     }
     
     override func didReceiveMemoryWarning() {
@@ -93,6 +93,7 @@ class RootMenuContainerViewController: UIViewController
                 {
                     leftViewController.view.center.x = min(leftViewController.view.center.x + recognizer.translationInView(view).x, leftViewController.view.frame.width / 2)
                     recognizer.setTranslation(CGPointZero, inView: self.leftMenuViewController!.view)
+                    self.overlayView.layer.backgroundColor = UIColor(white: 0.1, alpha: self.calculateAlphaOverlayForLayer(leftViewController.view.frame.origin.x)).CGColor
                 }
                 
             case UIGestureRecognizerState.Ended:
@@ -105,11 +106,21 @@ class RootMenuContainerViewController: UIViewController
         }
     }
     
+    func handleTapGesture(recognizer: UITapGestureRecognizer) {
+        self.animateLeftMenu(shouldExpand: false)
+    }
+    
     private func addChildLeftMenuViewController()
     {
         self.leftMenuViewController.view.frame = CGRectMake(-MENU_WIDTH, 0, MENU_WIDTH, self.leftMenuViewController.view.frame.height)
         
-        self.view.insertSubview(self.leftMenuViewController.view, aboveSubview: self.view)
+        self.overlayView = UIView(frame: UIScreen.mainScreen().bounds)
+        self.overlayView.layer.backgroundColor = UIColor(white: 0.1, alpha: 0).CGColor
+        self.overlayView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("handleTapGesture:")))
+        
+        UIApplication.sharedApplication().keyWindow!.addSubview(self.overlayView)
+        UIApplication.sharedApplication().keyWindow!.addSubview(self.leftMenuViewController.view)
+        
         self.addChildViewController(self.leftMenuViewController)
         self.leftMenuViewController.didMoveToParentViewController(self)
     }
@@ -117,6 +128,7 @@ class RootMenuContainerViewController: UIViewController
     private func animateLeftMenuXPosition(#targetPosition: CGFloat, completion: ((Bool) -> Void)! = nil) {
         UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
             self.leftMenuViewController?.view.frame.origin.x = targetPosition
+            self.overlayView.layer.backgroundColor = UIColor(white: 0.1, alpha: self.calculateAlphaOverlayForLayer(targetPosition)).CGColor
             }, completion: completion)
     }
     
@@ -124,28 +136,45 @@ class RootMenuContainerViewController: UIViewController
     {
         if (self.leftMenuViewController == nil)
         {
-            self.leftMenuViewController = self.storyboard?.instantiateViewControllerWithIdentifier("leftMenuViewController") as? LeftMenuViewController
+            self.leftMenuViewController = self.storyboard?.instantiateViewControllerWithIdentifier(ViewControllerIdentifiers.LEFT_MENU.rawValue) as? LeftMenuViewController
             self.addChildLeftMenuViewController()
         }
     }
     
     private func animateLeftMenu(#shouldExpand: Bool)
     {
-        if (shouldExpand) {
+        if (shouldExpand)
+        {
             self.currentState = .LeftPanelExpanded
             
-            self.animateLeftMenuXPosition(targetPosition: 0)
+            self.animateLeftMenuXPosition(targetPosition: 0) {
+                finished in
+                    self.leftMenuViewController.view.addGestureRecognizer(self.panGestureRecognizer)
+            }
         }
             
         else
         {
             self.animateLeftMenuXPosition(targetPosition: -MENU_WIDTH) {
                 finished in
-                self.currentState = .BothCollapsed
-                self.leftMenuViewController?.view.removeFromSuperview()
-                self.leftMenuViewController = nil;
+                    self.currentState = .BothCollapsed
+                    self.leftMenuViewController?.view.removeFromSuperview()
+                    self.leftMenuViewController = nil;
+                    self.overlayView.removeFromSuperview()
+                    self.overlayView = nil
+                    self.contentViewController.view.addGestureRecognizer(self.panGestureRecognizer)
             }
         }
+    }
+    
+    private func calculateAlphaOverlayForLayer(targetPosition: CGFloat) -> CGFloat
+    {
+        let totalDistance = MENU_WIDTH
+        let delta = MENU_WIDTH - abs(targetPosition)
+        let percentage = delta / totalDistance
         
+        let calculatedAlphaOverlay = MAX_ALPHA_OVERLAY * percentage
+        
+        return calculatedAlphaOverlay
     }
 }

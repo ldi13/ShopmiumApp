@@ -14,4 +14,5 @@ enum ViewControllerIdentifiers: String
     case SIGN_UP = "signUpViewController"
     case ROOT_MENU_CONTAINER = "rootMenuContainerViewController"
     case ON_BOARD = "onBoardViewController"
+    case LEFT_MENU = "leftMenuViewController"
 }
