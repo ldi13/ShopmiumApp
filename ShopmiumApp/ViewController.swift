@@ -16,7 +16,7 @@ extension UIViewController
     {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = title
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu_icon_navbar"), style: UIBarButtonItemStyle.Plain, target: self, action: "openLeftMenu")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu_icon_navbar"), style: UIBarButtonItemStyle.Plain, target: self, action: "showHideLeftMenu")
     }
     
     func getRootMenuContainerViewController() -> RootMenuContainerViewController?
@@ -41,7 +41,7 @@ extension UIViewController
         return nil
     }
     
-    func openLeftMenu() {
+    func showHideLeftMenu() {
         self.getRootMenuContainerViewController()!.toggleLeftMenu()
     }
 }

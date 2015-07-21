@@ -2,6 +2,8 @@
 //  ViewControllerIdentifiers.swift
 //  ShopmiumApp
 //
+//  Enum defining view controllers identifiers.
+//
 //  Created by Lorenzo Di Vita on 14/07/2015.
 //  Copyright (c) 2015 shopmium. All rights reserved.
 //

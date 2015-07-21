@@ -23,7 +23,7 @@ class RootMenuContainerViewController: UIViewController
     
     enum SlideOutState
     {
-        case BothCollapsed
+        case Collapsed
         case LeftPanelExpanded
     }
     
@@ -32,7 +32,7 @@ class RootMenuContainerViewController: UIViewController
     
     var contentNavigationController: UINavigationController!
     var contentViewController: UIViewController!
-    var currentState: SlideOutState = .BothCollapsed
+    var currentState: SlideOutState = .Collapsed
     var leftMenuViewController: LeftMenuViewController!
     var panGestureRecognizer: UIPanGestureRecognizer!
     var overlayView: UIView!
@@ -62,6 +62,9 @@ class RootMenuContainerViewController: UIViewController
         super.didReceiveMemoryWarning()
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return self.currentState != .Collapsed
+    }
     
     // MARK: - Custom methods
     
@@ -83,10 +86,16 @@ class RootMenuContainerViewController: UIViewController
         switch(recognizer.state)
         {
             case UIGestureRecognizerState.Began:
-                if (self.currentState == .BothCollapsed)
+                if (self.currentState == .Collapsed)
                 {
-                    if (gestureIsDraggingFromLeftToRight) {
+                    if (gestureIsDraggingFromLeftToRight)
+                    {
                         self.addLeftMenuViewController()
+                        
+                        self.currentState = .LeftPanelExpanded
+                        UIView.animateWithDuration(0.1, animations: {
+                            self.setNeedsStatusBarAppearanceUpdate()
+                        })
                     }
                 }
                 
@@ -148,6 +157,10 @@ class RootMenuContainerViewController: UIViewController
         if (shouldExpand)
         {
             self.currentState = .LeftPanelExpanded
+            UIView.animateWithDuration(0.1, animations: {
+                self.setNeedsStatusBarAppearanceUpdate()
+            })
+            
             
             self.animateLeftMenuXPosition(targetPosition: 0) {
                 finished in
@@ -157,9 +170,14 @@ class RootMenuContainerViewController: UIViewController
             
         else
         {
+            self.currentState = .Collapsed
+            UIView.animateWithDuration(0.1, animations: {
+                self.setNeedsStatusBarAppearanceUpdate()
+            })
+            
             self.animateLeftMenuXPosition(targetPosition: -MENU_WIDTH) {
                 finished in
-                    self.currentState = .BothCollapsed
+                    self.setNeedsStatusBarAppearanceUpdate()
                     self.leftMenuViewController?.view.removeFromSuperview()
                     self.leftMenuViewController = nil;
                     self.overlayView.removeFromSuperview()
@@ -167,6 +185,8 @@ class RootMenuContainerViewController: UIViewController
                     self.contentViewController.view.addGestureRecognizer(self.panGestureRecognizer)
             }
         }
+        
+        
     }
     
     private func calculateAlphaOverlayForLayer(targetPosition: CGFloat) -> CGFloat
