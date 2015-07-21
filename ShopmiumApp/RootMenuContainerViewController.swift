@@ -18,6 +18,7 @@ class RootMenuContainerViewController: UIViewController
     let MAX_ALPHA_OVERLAY = CGFloat(0.8)
     let MIN_ALPHA_OVERLAY = CGFloat(0)
     
+    
     // MARK: - Enum
     
     enum SlideOutState
@@ -35,6 +36,7 @@ class RootMenuContainerViewController: UIViewController
     var leftMenuViewController: LeftMenuViewController!
     var panGestureRecognizer: UIPanGestureRecognizer!
     var overlayView: UIView!
+    
     
     // MARK: - UIViewController lifecycle methods
     
